@@ -1,0 +1,22 @@
+<h1 class="display-4">Calculator</h1>
+<form class="form-inline">
+  <div class="form-group mb-2">
+    <select tabindex="1" class="custom-select" name="drpOperation" id="drpOperation" #drpOperation="ngModel" [(ngModel)]="operator">
+      <option *ngFor="let o of operations;" [value]="o" [disabled]="!isSelectable()">
+        {{o}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <input tabindex="2" type="text" class="form-control" name="txtNumber" id="txtNumber" #txtValue="ngModel" [(ngModel)]="value"  placeholder="enter a number">
+  </div>
+  <button tabindex="3" type="submit" class="btn btn-primary mb-2" (click)="add()">Add step</button>
+</form>
+<div class="jumbotron">
+  <ul>
+    <li *ngFor="let s of steps;">{{ s.toString() }}</li>
+  </ul>
+</div>
+<a tabindex="4" class="btn-action btn btn-primary" (click)="calculate()">Calculate</a>
+<a tabindex="5" class="btn-action btn btn-danger" (click)="reset()">Reset</a>
+<p *ngIf="result !== null">Result: <span>{{ result }}</span></p>
